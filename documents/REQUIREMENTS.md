@@ -1,155 +1,41 @@
-# Requirements for the Calculator CLI
-
-The Calculator CLI must satisfy the following requirements based on the tests:
+# Requirements for the Financial Calculator CLI
 
 ## 1\. Command-Line Arguments
 
 *   **Expected Input Format:**
 
-    The CLI must be executed with exactly three command-line arguments (in addition to the `node` command and the script name):
+    The CLI must be executed with a list of transaction amounts (in addition to the `node` command and the script name):
 
-    ```
-    node calculator.js number operator number
-    ```
+    node financialCalculator.js transaction1 transaction2 ...
 
-    *   **First Operand:** Must be a number.
-    *   **Operator:** Must be one of the supported operation keywords.
-    *   **Second Operand:** Must be a number.
-*   **Insufficient Arguments:**
+    Each argument is processed; non-numeric arguments are allowed but must be ignored. Positive numbers represent income, and negative numbers represent expenses.
 
-    If fewer than three arguments are provided, the CLI must:
+*   **No Valid Numbers Provided:**
 
-    *   Output the error message:
-
-        ```
-        usage: node calculator.js number operator number
-        ```
-
-    *   Exit with a non-zero exit code.
-*   **Extra Arguments:**
-
-    If more than three arguments are provided, the CLI must ignore any additional arguments and compute the result based on only the first three.
+    If, after ignoring non-numeric arguments, no valid numbers remain, the CLI must output an error message containing the word "Error" and exit with a non-zero exit code.
 
 
-## 2\. Supported Arithmetic Operations
+## 2\. Financial Calculations and Operations
 
-The CLI must support the following operations:
+*   **Total Transactions:** Count the total number of valid transaction inputs.
+*   **Total Sum:** Compute the sum of all transaction amounts using the provided `addUpArrayElements` function.
+*   **Average Transaction:** Calculate the average value of the transactions (total sum divided by total transactions).
+*   **Total Income:** Sum only the positive transactions (income) using appropriate arithmetic operations.
+*   **Total Expenses:** Sum only the negative transactions (expenses) using appropriate arithmetic operations.
+*   **Net Balance:** Compute the net balance by adding total income and total expenses.
 
-*   **Addition (`add`):**
-    *   Compute the sum of the two numbers.
-    *   **Example:**
-
-        ```
-        node calculator.js 2 add 3
-        ```
-
-        Expected output: `result: 5`
-*   **Subtraction (`subtract`):**
-    *   Compute the difference by subtracting the second number from the first.
-    *   **Example:**
-
-        ```
-        node calculator.js 5 subtract 3
-        ```
-
-        Expected output: `result: 2`
-*   **Multiplication (`multiply` or `times`):**
-    *   Compute the product of the two numbers.
-    *   **Examples:**
-
-        ```
-        node calculator.js 4 multiply 3
-        ```
-
-        or
-
-        ```
-        node calculator.js 4 times 3
-        ```
-
-        Expected output: `result: 12`
-*   **Division (`divide`):**
-    *   Divide the first number by the second.
-    *   **Example:**
-
-        ```
-        node calculator.js 10 divide 2
-        ```
-
-        Expected output: `result: 5`
-    *   **Division by Zero:** If the second operand is zero, the CLI must treat this as an invalid number input. It should output an error message that includes "invalid number" and exit with a non-zero exit code.
-*   **Modulus (`modulus` or `remainder`):**
-    *   Compute the remainder of dividing the first number by the second.
-    *   **Examples:**
-
-        ```
-        node calculator.js 10 modulus 3
-        ```
-
-        or
-
-        ```
-        node calculator.js 10 remainder 3
-        ```
-
-        Expected output: `result: 1`
-*   **Power (`power`):**
-    *   Raise the first number to the power of the second.
-    *   **Example:**
-
-        ```
-        node calculator.js 2 power 3
-        ```
-
-        Expected output: `result: 8`
-    *   **Special Cases:**
-        *   An exponent of zero should result in `result: 1`.
-        *   Negative exponents should be correctly computed (e.g., `node calculator.js 2 power -2` should result in `result: 0.25`).
-
-## 3\. Input Validation and Error Handling
-
-*   **Numeric Validation:**
-
-    Both the first and second operands must be valid numbers. If either operand is not a number (e.g., letters or symbols), the CLI must output an error message containing "invalid number" and exit with a non-zero exit code.
-
-*   **Division by Zero:**
-
-    Division by zero must be handled as an error. The error message must include "invalid number" and the program must exit with a non-zero exit code.
-
-*   **Unknown Operator:**
-
-    If the operator does not match any of the supported operations (considering case-insensitivity), the CLI must output an error message:
-
-    ```
-    unknown operation
-    ```
-
-    and exit with a non-zero exit code.
-
-*   **Case-Insensitive Operators:**
-
-    Operators must be interpreted in a case-insensitive manner (e.g., `ADD` should be treated as `add`).
-
-
-## 4\. Output Format and Exit Codes
+## 3\. Output Format and Exit Codes
 
 *   **Valid Operation:**
 
-    For valid inputs and successful computations, the CLI must print the result in the following format:
-
-    ```
-    result: <computed value>
-    ```
-
-    The process should exit with code `0`.
+    For valid inputs and successful computations, the CLI must display the computed financial metrics in a table format using `console.table()`. The table must include the labels: "Total Transactions", "Total Sum", "Average Transaction", "Total Income", "Total Expenses", and "Net Balance". The process must exit with code 0.
 
 *   **Error Conditions:**
 
-    For any errors (invalid numbers, division by zero, insufficient arguments, or unknown operations), the CLI must output the appropriate error message and exit with a non-zero exit code (typically `1`).
+    If no valid transaction amounts are provided after ignoring non-numeric inputs, the CLI must output an error message containing "Usage: node financialCalculator.js" and exit with a non-zero exit code.
 
 
-## 5\. Additional Considerations
+## 4\. Additional Considerations
 
-*   **Negative and Floating Point Numbers:**
-
-    The CLI must correctly handle negative numbers and floating point arithmetic.
+*   **Handling Negative and Floating Point Numbers:** The CLI must correctly process negative numbers and floating point values.
+*   **Test Coverage:** All tests in the provided test suite (`financialCalculator.test.js`) must pass. The tests use complex input—including a mix of positive numbers, negative numbers, and non-numeric values—to validate correct computation and proper error handling.

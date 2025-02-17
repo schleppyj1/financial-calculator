@@ -1,64 +1,29 @@
-# Calculator CLI
-
-A simple command-line calculator that performs basic arithmetic operations.
+# Financial Calculator CLI
 
 ## Overview
 
-This project provides a command-line calculator that supports the following **8** operation keywords:
-
-*   Addition (`add`)
-*   Subtraction (`subtract`)
-*   Multiplication (`multiply` or `times`)
-*   Division (`divide`)
-*   Modulus (`modulus` or `remainder`)
-*   Power (`power`)
+This project provides a command-line financial calculator that processes a list of transaction amounts and outputs key financial metrics. The calculator computes the total number of transactions, total sum, average transaction value, total income (sum of positive transactions), total expenses (sum of negative transactions), and net balance.
 
 ## Prerequisites
 
-This project requires [Node.js](https://nodejs.org/) to be installed on your system. We recommend using Node.js version 12 or higher.
-
+This project requires Node.js (version 12 or higher). Please ensure that Node.js is installed on your system.
 
 ## Installation
 
-1.  Install as a devDependencies:
+To install the package as a development dependency, run:
 
-    ```bash
-    npm install @yourname/calculator --save-dev
-    ```
-
+npm install @yourname/financial-calculator --save-dev
 
 ## Usage
 
-To use the calculator, run the script with three arguments:
+To run the financial calculator, use the following command with a list of transaction amounts (ignoring non-numbers):
 
-```bash
-npx calculator.js number operator number
-```
+node financialCalculator.js <transaction1> <transaction2> ...
 
-Examples:
+Example:
 
-*   Addition:
-
-    ```
-    node calculator.js 2 add 3
-    // Expected Output: result: 5
-    ```
-
-*   Division:
-
-    ```
-    node calculator.js 10 divide 2
-    // Expected Output: result: 5
-    ```
-
-*   Power:
-
-    ```
-    node calculator.js 2 power 3
-    // Expected Output: result: 8
-    ```
-
+node financialCalculator.js 100 -50 job 200 taxes -75
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the MIT License. See the LICENSE file for additional details.

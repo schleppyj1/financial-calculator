@@ -1,23 +1,23 @@
 {
-  "name": "@yourname/calculator",
+  "name": "@yourname/financial-calculator",
   "version": "1.0.0",
-  "description": "A simple command-line calculator that performs basic arithmetic operations.",
-  "main": "calculator.js",
+  "description": "A simple command-line financial calculator that processes transaction amounts and computes key financial metrics.",
+  "main": "financialCalculator.js",
   "bin": {
-    "calculator": "./calculator.js"
+    "financial-calculator": "./financialCalculator.js"
   },
   "files": [
-    "calculator.js",
+    "financialCalculator.js",
     "src",
     "LICENSE",
     "README.md"
   ],
   "scripts": {
-    "test": "vitest tests/calculator.test.js --globals --run --reporter verbose",
+    "test": "vitest tests/financialCalculator.test.js --globals --run --reporter verbose",
     "lint": "eslint ."
   },
   "keywords": [
-    "calculator",
+    "financial calculator",
     "cli",
     "arithmetic",
     "vitest",
@@ -30,7 +30,7 @@
   "author": "Your Name",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/calculator.git"
+    "url": "git+https://github.com/yourusername/financial-calculator.git"
   },
   "license": "MIT",
   "devDependencies": {
